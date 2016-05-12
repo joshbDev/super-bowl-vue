@@ -1,32 +1,3 @@
-<style>
-.sb-titles {
-  display: inline-block;
-  margin: 10px;
-  font-size: 15px;
-  -webkit-transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  transition: all .3s linear;
-}
-.sb-titles:hover {
-  color: #666;
-  font-size: 17px;
-}
-.header {
-  display: block;
-  font-size: 40px;
-}
-small {
-  font-size: 20px;
-  color: #666;
-}
-.chosen {
-font-weight: 600;
-font-size: 23px;
-}
-</style>
-
 <template>
 <div class="header">Teams <small>listed by first appearance in a super bowl</small></div>
 <div>
@@ -58,17 +29,17 @@ export default {
       superBowlTeams,
     };
   },
-  ready() {
-    this.$watch('chosen-year', (oldVal, year) => {
+  events: {
+    'year-updated'(year) {
       const yearObject = sbData[year];
       this.superBowlTeams.map((team) => {
         if(yearObject && (yearObject.teams[0] === team.name || yearObject.teams[1] === team.name)) {
-          team.class = 'clickable chosen';
+          team.class = 'clickable chosen sb-titles';
         } else {
-          team.class = 'clickable';
+          team.class = 'clickable sb-titles';
         }
       });
-    });
+    },
   },
   methods: {
     chooseTeam(team) {

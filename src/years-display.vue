@@ -46,6 +46,17 @@ export default {
       superBowlYears,
     }
   },
+    events: {
+    'team-updated'(team) {
+      superBowlYears.map((year) => {
+        if (year.teams[0] === team || year.teams[1] === team) {
+          year.class = 'clickable chosen sb-titles';
+        } else {
+          year.class = 'clickable sb-titles';
+        }
+      });
+    },
+  },
   methods: {
     chooseYear(index) {
       let chosenIndex = index;

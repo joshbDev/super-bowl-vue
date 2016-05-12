@@ -10,7 +10,7 @@ const app = new Vue({
   <div class="all-games"> Sort by...</div>
   <sb-teams v-on:team-chosen="chosenTeam"></sb-teams>
   <sb-years v-on:year-chosen="chosenYear"></sb-years>
-  <div v-on:click="allGames()" class="clickable all-games">Or See All Super Bowls</div>
+  <div v-on:click="allGames()" class="clickable all-games header"><small>Or See All Super Bowls</small></div>
   <div v-if="yearInfo.length" class="game-display">
     <div v-for="year in yearInfo">
     <sb-display :sb-info="year"></sb-display>
@@ -42,6 +42,7 @@ const app = new Vue({
         this.yearInfo.push(gameData, year);
       }
       this.previouslyChosenTeam = team;
+      this.$broadcast('team-updated', team);
     },
     allGames() {
       const yearInfo = [];
@@ -61,6 +62,7 @@ const app = new Vue({
       this.isTheChosenYear = year;
       const gameData = buildGameData(sbChosen, year);
       this.yearInfo = [gameData];
+      this.$broadcast('year-updated', year);
     },
   },
 });

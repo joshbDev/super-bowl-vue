@@ -15,5 +15,5 @@ app.use('/', function(req, res) {
 var httpServer = http.createServer(app);
 
 httpServer.listen(7000, '0.0.0.0', undefined, function () {
-  console.log('APP RUNNING ON PORT 9000');
+  console.log('APP RUNNING ON PORT 7000');
 });
